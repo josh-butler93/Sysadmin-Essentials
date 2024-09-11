@@ -1,0 +1,78 @@
+Powershell Assignment Operatiors Breakdown
+# += #
+#--increases the vlaue of a variable by the specified value or... 
+   #appends the specified value to the existing value-#
+
+# -= #
+#--decreases the value of a variable by the specified value--#
+
+# *= #
+#multiplies the value of a variable by the specified value or...
+  #appends the specified value to the existing value#
+
+# /= # 
+#--divides the value of a variable by the specified value--#
+
+# %= #
+#--divides the vlaue of a variable by the specified value and...
+   #then assigns the remainder to the variable#
+
+# ++ #
+#--increases the value fo a variable, assignable property or...
+   #array element by 1#
+
+# -- (minus minus) #
+#--decreases the value of a variable, assignable property, or...
+   #array element by 1#
+
+#________________________________Operators in Use__________________________________#
+   
+#--   Varibles //=\\  --#
+$a =10
+$b = "power"
+$c = 10,17,20
+$d = @{svr01 = "10.10.0.201"; svr02 = "10.10.0.202" }
+$e = 10kb #mb
+#--               --#
+  
+# =+  __Examples__ #
+$a += 5
+$a = ($a + 5)
+$b += "shell"
+$c += 25
+$d += @{svr03 = "10.10.0.203"}
+$d += "Powershell" #only hash tables can be added to hash tables so this is null#
+#--                  --#
+
+# --=  __Examples__ #
+$a -= 5
+$c[1] -= 2 #this subracts 2 from 17 because it is in the spot [1]#
+#--                    --#
+
+#  *= __Examples__#
+$a *= 5
+$a = ($a * 5)
+$b *= 3
+$c [0] *= 3
+#--           --#
+
+#  /=  __Examples__#
+$a /= 3
+$a = ($a / 2)
+#--               --#
+
+# %=   __examples__#
+$a %= 2
+$a = ($a % 2)
+#--                --#
+
+# ++ __Examples__#
+$a = 10
+++$a 
+$preInc = ++$a #called a pre-increment#
+$postInc = $a++ #called a post-increment#
+$c[1]++
+#--                 --#
+
+# -- (minusMinus) __Examples__#
+ $a = 10
