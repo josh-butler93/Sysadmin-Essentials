@@ -1,0 +1,43 @@
+#------------------------------------------------------while_statements------------------------------------------------#
+#while statement syntax
+while (<condition>) {
+        <statement list>
+}
+# //
+
+#---------------------------------------------------------
+# while example [lt]
+$a = 0
+while ($a -lt 10) {
+        $a
+        $a++
+}
+# // output == 0,1,2,3,4,5,6,7,8,9
+
+#---------------------------------------------------------
+# while example [le]
+$a = 0
+while ($a -le 10) {
+        $a
+        $a++
+}
+# // output == 0,1,2,3,4,5,6,7,8,9,10
+
+#-----------------------------------------------------------
+while (!(Get-Process -Name notepad -ErrorAction SilentlyContinue).Responding) {
+        " notepad is not running"
+}
+"notepad has been started"
+# // output == script will continue to run until notepad has started
+
+#----------------------------------------------------------
+# below code is condensed version of above code #
+(Get-Process -Name notepad++ -ErrorAction SilentlyContinue).Responding #code will not run must include [!]
+# // output == true >> notepad++ is responding
+
+!(Get-Process -Name notepad++ -ErrorAction SilentlyContinue).Responding #[!] included with the code
+# // outpur == false >> notepad++ is repsonding
+
+#-------------------------------------------------------
+# get-process for applications #
+Get-Process -Name chrome #press //tab// to get the different processes [applications] you may want to see
