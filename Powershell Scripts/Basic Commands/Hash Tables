@@ -83,3 +83,30 @@ $ip.srv02
 #name03 ='james'
 #}
 #$test
+#-------------------------------------------------------------------------------------------
+#hash tables part2#
+
+#get-service dhcp#
+#get-service dnscache#
+
+#below table stores this info in the svcinfo key#
+
+#--            key                --#
+$svcinfo = @{
+'dhcp' = (Get-Service dhcp)
+'Dnscache' = (Get-Service Dnscache)
+}
+#--                                  --#
+
+$svcinfo
+#to call the whole key#
+
+$svcinfo.dhcp
+#to call the dhcp key#
+
+$svcinfo.Dnscache
+#to call the dnscache value#
+
+$svcstatus = @{
+
+}
