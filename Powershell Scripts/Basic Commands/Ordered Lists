@@ -1,0 +1,26 @@
+#Ordered dictionary#
+#place open bracets right before the @ symbol
+
+#--        ordered     --#
+$ips = [ordered] @{
+srv01 = '10.10.0.201'
+srv02 = '10.10.0.221'
+srv03 = '10.10.0.219'
+srv04 = '10.10.0.212'
+}
+#--                             --#
+
+#to see the difference in orded vs hash table run below command#
+
+#--                      --#
+#//$ips.keys\\#
+#--                     --#
+
+#--// output\\--#
+
+#=srv01=#
+#=srv02=#
+#=srv03=#
+#=srv04=#
+
+#--//lists the data in an ordered list\\--#
