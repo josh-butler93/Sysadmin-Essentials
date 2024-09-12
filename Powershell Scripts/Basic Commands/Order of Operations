@@ -1,0 +1,167 @@
+#arithmetic operators#
+
+#operator precedence#
+#parentheses /()\#
+#negative for a number /--\#
+# *, /, % #
+# +, -- (for subtraction)#
+
+#_______________________________________+ addition________________________________________#     
+ 
+#-- Ex: 1--#
+$a = 5 + 4
+#//
+$a.GetType()
+ #--          --#
+
+ #--  ex: 2 --#
+#//
+'power' + 'shell'
+#//
+$run =  'power' + 'shell'
+#//
+$run.gettype()
+#--              --#
+
+
+#these examples combine 2 arrays together#
+#//
+#-- ex:3  --#
+$newarr = @('a' , 'b') + ('75' , '76')
+#//
+@('a' + 'b')  + @(75 , 77)
+#//
+@('a', 'b')  + @(75 , 77)
+#//
+@('a' + 'b') + @(75+77)
+#--                                   --#
+
+#this assigns a variable to a number#
+#hash pairs with a single key value#
+#curly braces in use not parenthesis#
+#//
+#--             ex: 4              --#
+@{'a' = 75}  + @{'b' = 77}
+#//
+$d = (Get-Date).AddDays(7)
+$d.GetType()
+#--                                    --#
+
+
+#________________________________________-- subtraction______________________________________#
+
+#this operation can only be used on integers#
+#//
+
+#--  ex: 1 --#
+$b = 5 -4  
+#//
+$b.GetType()
+#//
+$c = (Get-DAte).Adddays(-7)
+#//
+$c.GetType()
+#--                   --#        
+
+#_____________________________________*Multiplecation_______________________________________#
+
+#can be used on integers and used to duplicate arrays as well#
+
+#--  Ex: 1   --#
+$f = 5* 4
+#//
+$f.GetType()
+#//
+#this shows how mult. can be used to duplicate values#
+#--  ex: 2  --#
+$g = '?' * 4
+#//
+$g.GetType()
+#//
+$h = @('?' , '!') * 10
+$h.gettype
+#--               --#
+
+#__________________________________ / Division and Modulus_______________________________________#
+
+#only used on integers#
+
+#-- ex: 1  -#
+$i = 8 / 5
+#//
+$k = 11 % 5
+#//
+$j = 9 % 2
+#--            --#
+
+#_________________________________operator precedence_________________________________________#
+
+# the order in which the computer goes through its math#
+
+#--  ex: 1  --#
+$l = 3+6 / 3*4 #6/3 * 4 + 3
+#==11==#
+$l.GetType()
+#//
+#--  ex:2  --#
+$m = 10 + 4 / 2
+#==12==#
+#//
+$n = (10 + 4) / 2
+#==7==#
+$n.GetType()
+
+#___________________________Objects of different types_____________________________#
+
+#--  ex:1  --#
+$e = 'fat' + 32 #reads the //+\\ symbol as concatenation#
+#--               --#
+#//
+$e = 32 + 'fat' #caused an error due to the order of the operations#
+#//
+#--variable--#
+$arr = 1,2,3
+#//
+$arr + 4
+#==concats 4 to the end of the numbers==#
+#//
+$arr + 'Powershell'
+#==concats ps. at the end of the string==#
+#//
+$arr * 2
+#==does the 1,2,3 twice==#
+#//
+'Echo...' * 3
+#==writes echo 3 times in a row==#
+
+#_____________________________division and interger data type______________________________#
+
+#--  Ex:1  --#
+$y = 5 / 4
+#==1.25==#
+#//
+$y.GetTypeCode() 
+#//
+(5 / 4).GetType()
+#-- above gives you a double double  --#
+#//
+$o = [int](5/4)
+#==1==#
+$o.GetType()
+#==int32==#
+#//
+$o = [int](5/3)
+#==2==#
+$o = 5/3
+#==1.66666666666667==#
+#//
+$n = [int](5/2)
+#==2==#
+$n = 5/2
+#==2.5==#
+#//
+$p = [int](7/2)
+#==4==#
+$p = 7/2
+#==3.5==#
+#//
