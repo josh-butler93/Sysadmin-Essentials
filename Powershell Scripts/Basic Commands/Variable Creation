@@ -1,0 +1,17 @@
+#understanding variables#
+#----------------------------------------------------------
+
+#call variable a to get the number 5#
+$a = 5
+#to get the properties of the variable run //$a | get-member\\#
+#also the \\$b.gettype()// =! //$a.gettype().fullname\\ is a shorter version of this command#
+
+#call variable b to get the number 7#
+$b = 7
+#to get the properties of the variable run //$b | get-member\\#
+#also the \\$b.gettype()// =! //$b.gettype().fullname\\ is a shorter version of this command#
+
+#call variable c to get the sum of variable a and varible b //12\\#
+$c = $a + $b
+#to get the properties of the variable run //$c | get-member\\#
+#also the \\$c.gettype()// =! //$c.gettype().fullname\\ is a shorter version of this command#
