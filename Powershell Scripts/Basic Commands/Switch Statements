@@ -1,0 +1,230 @@
+#-----------------------------------------------------------------Switch_statements-----------------------------------------------------------------------#
+#SWITCH STATEMENTS DO WHAT IF STATEMENTS DO#
+#IT INCLUDES A TEST VALUES AGAINST MULTIPLE CONDITIONS#
+
+#-----------------------------------------------------------------
+#switch statement syntax
+switch (<test-value>)  {
+        <condition> {<action>}
+        <condition> {<action>}
+}
+#(<test-value>) = the condition you want to set or the value you want to test against
+#{<action>}what to do if the action is true
+#//
+
+#---------------------------------------------------------------
+#switch
+$a = 1
+switch ($a) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+}
+# >> if the value of $a = 1 write "one"
+#the switch statement goes through each statement evaluation if its true#
+
+#---------------------------
+$a = 3
+switch ($a) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+}
+# >> if the value of $a = 3 write "three""
+#the switch statement goes through each statement evaluation if its true#
+
+#---------------------------
+$a = 1
+switch ($a) {
+        1 {"one"
+            "one"
+            "One"
+        }
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+}
+# >> if the value of $a = 1 write  "One"  "One"  "One"
+#the switch statement goes through each statement evaluation if its true#
+
+#----------------------------------------------
+#example with if statement
+$a = 10
+if ($a -eq 1) {
+        "one"
+} elseif ($a -le 2) {
+        "two"
+} elseif ($a -le 3) {
+        "three"
+} elseif ($a -le 4) {
+        "four"
+} elseif ($a -ge 5) {
+        "time to move on"
+}
+# >> if $a is less that or equal to (le) desired #; write state for condition
+# >> elseif $a is greater than or equal to (ge) desired #; write "time to move on"
+
+#----------------------------------------------
+#example with if statement
+$a = 1
+if ($a -eq 1) {
+        "one"
+} elseif ($a -le 2) {
+        "two"
+} elseif ($a -le 3) {
+        "three"
+} elseif ($a -le 4) {
+        "four"
+} elseif ($a -ge 5) {
+        "time to move on"
+}
+# >> if $a is less that or equal to (le) desired #; write state for condition
+# >> elseif $a is greater than or equal to (ge) desired #; write "time to move on"
+
+#----------------------------------------------
+#example with if statement
+$a = 3
+if ($a -eq 1) {
+        "one"
+} elseif ($a -le 2) {
+        "two"
+} elseif ($a -le 3) {
+        "three"
+} elseif ($a -le 4) {
+        "four"
+} elseif ($a -ge 5) {
+        "time to move on"
+}
+# >> if $a is less that or equal to (le) desired #; write state for condition
+# >> elseif $a is greater than or equal to (ge) desired #; write "time to move on"
+
+#----------------------------------------------------------------
+#switch with //default// parameter
+$a = 32
+switch ($a) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+        default {'you now able to move on'}
+}
+# >> script includes //default// vlaue to run if the value does not match $a#
+# // your now able to move on
+
+#----------------------------------------------------------------
+#switch with //default// parameter
+$a = 3
+switch ($a) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+        default {'you now able to move on'}
+}
+# >> script includes //default// value to run if the value does not match $a#
+# // three
+
+#-------------------------------------------------------------
+#multiple matches
+$a = 3
+switch ($a) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+        3 {"three again"}
+        default {'you now able to move on'}
+}
+# >> script incules a value that incorporates parameters for duplicates#
+# // three three again >> script ran trhough all options and ran through 3 twice#
+
+#-------------------------------------------------------------
+#multiple matches w/defualt parameter included#
+$a = 5
+switch ($a) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+        3 {"three again"}
+        default {'you now able to move on'}
+}
+# >> script incules a value that incorporates parameters for duplicates#
+# // you now able to move on#
+
+#-------------------------------------------------------------
+#multiple matches with break
+$a = 3
+switch ($a) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"; break}
+        4 {"four"}
+        3 {"three again"}
+        default {'you now able to move on'}
+}
+# this script forces the code to take a break >> three again will not be executed bc the code took a break
+# >> script incules a value that incorporates parameters for duplicates#
+# // output = three  \\not// three again like above code
+
+#-------------------------------------------------------------
+#multiple test values w/defualt parameter included#
+$a = 5
+$b = 4
+switch ($a, $b) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+        3 {"three again"}
+        default {'you now able to move on'}
+}
+# >> script test both values against the condition to outpur a result#
+# // output == you now able to move on >> four
+
+#-------------------------------------------------------------
+#multiple test values w/defualt parameter included >> as well as the duplicate parameter#
+$a = 5
+$b = 3
+switch ($a, $b) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"}
+        4 {"four"}
+        3 {"three again"}
+        default {'you now able to move on'}
+}
+# >> script test both values against the condition to outpur a result#
+# // output == you now able to move on >> three >> three again
+
+#-------------------------------------------------------------
+#multiple test values w/defualt parameter included >> as well as the duplicate parameter and break#
+$a = 5
+$b = 3
+switch ($a, $b) {
+        1 {"one"}
+        2 {"two"}
+        3{"three"; break}
+        4 {"four"}
+        3 {"three again"}
+        default {'you now able to move on'}
+}
+# >> script test both values against the condition to outpur a result#
+# // output == you now able to move on >> three
+
+#-------------------------------------------------------------
+#below script can be used to reject conditions
+#be sure to include the // -regex // parameter 
+#regex (==)  regular expression
+switch  -Regex ("Powershell") {
+        1 {"one"}
+        2 {"two"}
+        3{"three"; break}
+        4 {"four"}
+        3 {"three again"}
+        "pow*" {"is powerfull"}
+        default {'you now able to move on'}
+}
+# // output == Is powerfull //#
