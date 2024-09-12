@@ -1,0 +1,34 @@
+#single vs double quotes
+
+#----#
+$myname = 'Name'
+#----#
+
+#/\sINGLE QUOTES/\#                            
+#--------#
+#****//'the value of $myname is $myname'****\\#
+#--------# 
+#value =  //the value of $myname is $myname\\#
+
+#/\DOUBLE QUOTES/\#
+#--------#
+#//****"the value of $myname is $myname"****\\#
+#--------#
+#VALUE = //the value of josh is josh\\#
+
+#ADDING THE SYMBOL ABOVE THE TAB KEY PRODUCES ANOTHER TYPE OF VALUE#
+#--------#
+"the value of `$myname is $myname"
+#--------#
+#VALUE = //the value of $myname is josh\\#
+
+
+
+
+
+#------#
+#$A = 7
+#$B = 7
+#"THE ANWSER IS $($A + $B)"
+#------#
+#VALUE = //THE ANWSER IS 14\\#
