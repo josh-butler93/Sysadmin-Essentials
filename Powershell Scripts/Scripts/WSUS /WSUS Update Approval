@@ -2,7 +2,7 @@
 Import-Module UpdateServices
 
 # Connect to WSUS server
-$wsus = Get-WsusServer -Name "YourWSUSServerName" -Port 8530
+$wsus = Get-WsusServer -Name "YourWSUSServerName" -Port 0
 
 # Define date parameters
 $startDate = Get-Date "2024-01-01"  # Replace with your desired start date
