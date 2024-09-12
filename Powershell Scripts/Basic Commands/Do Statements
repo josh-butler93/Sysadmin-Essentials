@@ -1,0 +1,104 @@
+#-------------------------------------------------------DO_STATEMENTS------------------------------------------------------------#
+# do statement syntax #
+do {
+        <statement list>
+} while (<condiiton>)
+ do {
+        <STATEMENT LIST>
+ } UNTIL (<CONDITION>)
+#//
+
+#------------------------------------------------------
+# DO [WHILE] [le]
+$A = 0
+DO {
+        $A
+        $A++
+} WHILE ($A -LE 10)
+# // OUTPUT == 0,1,2,3,4,5,6,7,8,9,10
+
+#------------------------------------------------------
+# DO [WHILE] [le]
+$A = 0
+DO {
+        $A
+        $A+=2
+} WHILE ($A -LE 10)
+# // OUTPUT == 0,2,4,6,8,10
+
+#------------------------------------------------------
+# DO [WHILE] [lt]
+$A = 0
+DO {
+        $A
+        $A+=2
+} WHILE ($A -LT 10)
+# // OUTPUT == 0,2,4,6,8
+
+#------------------------------------------------------
+# DO [WHILE] [le]
+$A = 6
+DO {
+        $A
+        $A+=2
+} WHILE ($A -LE 10)
+# // OUTPUT == 6,8,10
+
+#------------------------------------------------------
+# DO [until] [gt]
+$A = 0
+DO {
+        $A
+        $A+=2
+} until ($A -gt 10)
+# // OUTPUT == 0,2,4,6,8,10
+
+#------------------------------------------------------
+# DO [until] [lt]
+$A = 0
+DO {
+        $A
+        $A+=2
+} until ($A -lt 10)
+# // OUTPUT == 0
+
+#------------------------------------------------------
+# DO [until] [eq]
+$A = 0
+DO {
+        $A
+        $A+=2
+} until ($A -eq 10)
+# // OUTPUT == 0,2,4,6,8
+
+#------------------------------------------------------
+# infiniate loop >> $b will never be -le to 10
+$A = 0
+DO {
+        $A
+        $A+=2
+} while ($b -le 10)
+# // OUTPUT == a bunch of numbers in a contiuous stream
+
+#--------------------------------------------------------
+# do [until]
+do {
+        "notepad is not running"
+} until ((Get-Process -Name notepad).Responding)
+"notepad has been started"
+#//
+
+#--------------------------------------------------------
+# do [while]
+do {
+        "notepad is not running"
+} while ((Get-Process -Name notepad).Responding)
+#//
+
+#--------------------------------------------------------
+# do [until]
+do {
+        "notepad is not running"
+} until ((Get-Process -Name notepad -ErrorAction SilentlyContinue).Responding)
+"notepad has been started"
+#//
