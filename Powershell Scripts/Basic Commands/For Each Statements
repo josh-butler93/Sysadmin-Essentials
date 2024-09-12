@@ -1,0 +1,50 @@
+#------------------------------------------------------for_each_statements----------------------------------------------------------#
+# for each statement syntax
+foreach ($<item> in $<collection>) {
+        <statement list>
+}
+# for each $<item> [variable] int the $<collection> [created array] >> do what is in the <statement list>
+# //
+
+#-----------------------------------------------------------------
+# foreach example
+$letters = "a", "b", "c", "d", "e", "f"
+foreach ($letter in $letters) {
+        $letter
+}
+# >> for each letter in the array letters print the letter
+# // output == a,b,c,d,e,f
+
+#-----------------------------------------------------------------
+# foreach example
+#name for the variable and the array dont matter to much
+$testgrade = "a", "b", "c", "d", "e", "f", "f", "a"
+foreach ($grade in $testgrade) {
+        $grade
+}
+# >> for each letter in the array letters print the letter
+# // output == a,b,c,d,e,f,f,a
+
+#---------------------------------------------------------------
+# get services example
+#for each service in service go to display its name >> go to the next service display the name >> repeat the process until there is nothing left
+$services = Get-Service
+foreach ($svc in $services) {
+        $svc.displayname
+}
+ 
+ $services = Get-Service
+foreach ($svc in $services) {
+        $svc.starttype
+}
+
+$services = Get-Service
+foreach ($svc in Get-Service) {
+        $svc.displayname
+}
+ 
+#below script is the short version of above script
+get-service  | foreach displayname
+
+#AFTER WRITING THE //FOREACH// CLAUSE >> PRESS //TAB// TO GO THROUGH A LIST OF POSSIBLE OPTION TO FOLLOW THE FOR EACH STATEMENT
+get-service  | foreach MachineName
