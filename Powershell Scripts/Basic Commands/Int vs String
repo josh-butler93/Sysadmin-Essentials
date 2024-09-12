@@ -1,0 +1,27 @@
+#string vs integer#
+#quotation marks give the variables a value of string#
+
+#interger#
+$f = 14
+
+#string#
+$g = '12'
+
+#the interger comes first in this varible so ps runs addition with the output of //24\\#
+#interger // system still completes the math on the two variables#
+$d = $f + $g
+#\\****$d.gettype()****//#
+
+#the string comes first in this variabl so ps run 12 + (concatenate) 14 with the output of //1214\\#
+#****//$j = $g + $f\\****#
+#\\****$j.gettype()****//#
+
+#use the //$g | get-member\\ if you want to convert the value to something different  \\look at the to... section for options#
+
+#subtraction works differnetly#
+#with the string first outcome for variable is //-2\\ and with gettype command it show its a int32 (integer) #
+#\\****$h = $g - $f
+#\\****$h.GetType()****//#
+
+#with the interger first the outcome is //2\\and with gettype command it show its a int32 (integer)#
+$h = $f - $g
