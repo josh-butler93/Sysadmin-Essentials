@@ -1,0 +1,280 @@
+#_________________________________Comparison OPerators__________________________________#
+
+#-- eq == Equal to#
+#-- ne == Not equal to #
+#-- gt == Greater-than #
+#-- ge == Greater-tahn or equal to #
+#-- lt == Less-than #
+#-- le == less-than or equal to #
+#-- like == match using the wildcard character (*) #
+#-- nolike == does n ot match using the regular expressions (*) #
+#-- match == matches a string using regular expressions #
+#-- notmatch == does not match a string using regular expressions #
+#-- contains == deetermine whether a collection of values includes a single value #
+#-- notcontains == determine whether a collection of values does nto include a single value #
+#-- in == determine whether a value appears in a collection of values #
+#-- notin == determines whether a value does not appear in a collection of values #
+#-- replace == changes the specified elements of a value #
+#-- is == determine if an object is a specific type #
+#-- isnot == determine if an object is not a specific type #
+
+#_______________________________________________________________________________________________#
+
+#_________________________________________Examples____________________________________________#
+# it basically asks the system does this eq that //answer// true or false #
+
+#________________________________________
+# -eq- # 
+
+5 -eq 5
+# true
+
+4 -eq 5
+#false
+
+"Powershel" -eq "powershell"
+#false
+
+"powershell" -eq "powershell"
+#true
+
+"Windows" -eq "Powershell"
+#false
+#//
+
+#____________________________________
+# -ne
+
+5 -ne 5
+#false 5 eoes equal 5
+
+4 -ne 5
+#true 4 does not equal 5
+
+"powershell" -ne "powershell"
+#false
+
+"windows" -ne "powershell"
+#true
+#//
+
+#_________________________________
+# -gt
+
+5 -gt 4
+#true
+
+5 -gt 5 
+#false
+
+4,5,6 -gt 5
+# 6 (is 4,5,or 6 greater than 5 == yes //6//)
+
+3,4,5 -gt 5
+#blank response non are -gt 5
+#//
+
+#___________________________________
+# -ge
+
+5 -ge 5
+#true
+
+4,5,6 -ge 5
+# 5,6 
+#//
+
+#____________________________________
+# -lt
+
+4 -lt 5
+#true
+
+5 -lt 5
+#false
+
+4,5,6 -lt 5
+#4
+#//
+
+#________________________________________
+# -le
+
+4 -le 5
+#true
+
+5 -le 5
+#true
+
+4,5,6 -le 5
+# 4,5
+
+3,4,5 -le 5
+# 3,4,5
+#//
+
+#___________________________________________
+# -like
+
+"windows powershell" -like "*shell"
+#true
+
+"windows powershel" -like "*shell"
+#false
+
+"windows powershell" -like "shell"
+#false
+
+"windows powershell", "itprotv", "bash shell" -like "*shell"
+#windows powershell and bash shell
+
+"windows", "windows powershell", "itprotv", "bash shell" -like "windows"
+#windows
+
+"windows powershell", "itprotv", "bash shell" -like "windows*"
+#windows powershell
+
+"itwindows", "windows powershell", "itprotv", "bash shell" -like "it*"
+#itwindows and itprotv
+#//
+
+#____________________________________________
+# -notlike
+
+"windows powershell" -notlike "*shell"
+#false
+
+"winddows powershel" -notlike "*shell"
+#true
+
+"windows powershell", "itprotv", "bash shell" -notlike "*shell"
+#itprotv 
+
+"windows powershell", "itprotv", "bash shel" -notlike "*shell"
+#itprotv and bash shel
+
+"windows powershell", "itprotv", "bash shel" -notlike "windows*"
+#itprotv and bash shel
+#//
+
+#_____________________________________________
+
+# -match
+
+"sunday", "monday", "tuesday" -match "sun"
+#sunday
+
+"sunday", "monday", "tuesday" -match "day"
+#sunday, monday, and tuesday
+
+"sunday" -match "sun"
+#true
+
+$matches
+#the matches variable is auto created with the match operator
+#execute one of the parameters first then run the match command
+#//
+
+#_____________________________________________
+# -notmatch
+
+"sunday", "monday", "tuesday" -notmatch "sun"
+#monday and tuesday
+
+"sunday" -notmatch "sun"
+#false
+
+$matches
+#//
+
+#______________________________________________
+# -contains
+
+"srv01", "srv02", "srv03" -contains "srv01"
+#true
+
+"sv01", "sv02", "sv03" -contains 'srv01'
+#false (none in this group contain srv01)
+#//
+
+#_______________________________________________
+# -notcontains
+
+"srv01", "srv02", "srv03" -notcontains "srv01"
+#false
+
+"sv01", "sv02", "sv03" -notcontains 'srv01'
+#true (none in this group contain srv01)
+#//
+
+#_______________________________________________
+#in operator added in powershellv3 can simplify syntax
+
+$names = 'powersh ell', 'powershell_ise', 'notepad++'
+Get-Process | where name -In $names
+Get-Process | where {$names -contains $_.Name}
+#//
+
+#_________________________________________________
+# -replace
+
+"book" -replace 'b', 'c'
+#cook
+
+"cam" -replace 'c', 'm'
+#mam
+#//
+
+#___________________________________________________
+# -in
+
+"srv01" -in "srv01", "srv02",  "srv03"
+#true
+
+"srv01" -in "sv01", "sv02", "sv03"
+#false
+#//
+
+#____________________________________________________
+# -notin
+
+"srv04" -notin "srv01", "srv02",  "srv03"
+#true
+
+"srv01" -notin "sv01", "sv02", "sv03"
+#true
+#//
+
+#______________________________________________________
+# -is
+
+$a = 1
+$b = "1"
+
+$a -is [int]
+#True
+
+$b -is [int]
+#false
+
+$a -is $b.GetType()
+#false
+#//
+
+#________________________________________________________
+# -isnot
+
+$a = 1
+$b = "1"
+
+$a -isnot [int]
+#false
+
+$b -isnot [int]
+#true
+
+$a -isnot $b.GetType()
+#true
+#//
+
+#___________________________________________________________
