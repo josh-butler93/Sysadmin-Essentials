@@ -1,0 +1,141 @@
+#--------------------------------------------------------------------if-statements------------------------------------------------------------------#
+# if statement syntax
+if (condition) {
+       <statement[s] if true> #press tab button for spacing
+}
+
+if (condition) {
+        <statement[s] if true>; #press tab button for spacing
+        <statement[s] if true>[;] #press tab button for spacing
+
+}
+
+#------------------------------------------------------------
+#if#
+$a = 5
+if ($a -eq 5){
+          '$a equals 5'
+}
+#// '$a -eq 5'
+
+
+
+#--------------------------------------------------------------
+#common mistakes#
+# = is an assignment operator -eq should be used instead 
+if ($a = 10){
+        '$a equals 10'
+}
+#//$a equals 10
+
+if ($a = 15){
+       '$a equals 10'
+}
+#//$a equals 10
+
+if ($a == 10){
+       '$a equals 10'
+}
+#//error occurs
+
+
+
+#-----------------------------------------------------------------
+#if with else clause syntax#
+if (condition) {
+        <statement[s] if condition is true>
+} else {
+        <statement[s] if condition is false>
+}
+#//statements
+#--------------------------------------------------------------------
+#if with else clause#
+$a = 10
+if ($a -eq 5) {
+        '$a equals 5'       
+} else {
+        '$a does not equal 5'
+}
+#//$a does not equal 5
+#--------------------------------------------------------
+#if with else clause#
+$a = 5
+if ($a -eq 5) {
+        '$a equals 5'       
+} else {
+        '$a does not equal 5'
+}
+#//$a equals 5
+
+
+
+#----------------------------------------------------------------------
+#if with multiple conditions syntax#
+if (condition) {
+        <statement[s] if condition is true>
+} else (condition2) {
+        <statement[s] if condition2 is true>
+} else {
+        <statement[s] if no conditions are true>
+}
+#//ex. statement
+
+#if with multiple conditions
+$a = 4
+if ($a -eq 5) {
+        '$a equals 5'
+} elseif ($a = 10) {
+        '$a equals 10'
+} else {
+        '$a does not equal 5 or 10'
+}
+#//$a equals 10 >> bc of the = used in the statement
+
+#if with multiple conditions
+$a = 5
+if ($a -eq 5) {
+        '$a equals 5'
+} elseif ($a = 10) {
+        '$a equals 10'
+} else {
+        '$a does not equal 5 or 10'
+}
+#//$a equals 5
+
+#if with multiple conditions
+$a = 10
+if ($a -eq 5) {
+        '$a equals 5'
+} elseif ($a -eq 10) {
+        '$a equals 10'
+} else {
+        '$a does not equal 5 or 10'
+}
+#//$a equals 10
+
+#if with multiple conditions
+$a = 4
+if ($a -eq 5) {
+        '$a equals 5'
+} elseif ($a -eq 10) {
+        '$a equals 10'
+} else {
+        '$a does not equal 5 or 10'
+}
+#//$a does not equal 5 or 10
+
+
+#------------------------------------------------------------------------
+#sysadmin example_1#
+if ((get-service -Name Dnscache).Status -eq "running") {
+        "the dns client is running."
+}
+#//the dns client is running
+
+#sysadmin example_2#
+If ((get-service -name Dnscache).Status -eq "running"){
+        "the dns client is running."
+} else {
+        "the dns client is not running."
+}
+#//
