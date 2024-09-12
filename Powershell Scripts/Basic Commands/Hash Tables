@@ -1,0 +1,85 @@
+#**choose a specific line and press the play button with the paper behind it to only run that part of the script#
+
+#hash tables#
+#--a way to store key value pairs--#
+
+#----key value pair----#
+#svr01 = '10.10.0.201'#
+#--------#
+#//srv01 = key\\    //10.10.0.201 = value\\#
+
+
+#/\cast/\ =means to change a data type=/\ string to int or cat values/\#
+#you can cast a hash table as a ordered dictionary#
+#hash tables start with @ followed by //open curly braces {\\ and the //key = value\\ inside the curly brace#
+#key value pairs are seperated with //semicolons ;\\#
+#to wrap the whole hash table you use a //closed curly brace }\\#
+
+#this is a hash table storing ip addresses as strings#
+#srv01 =1st key value pair //\\ srv02 =2nd key value pair#
+
+#--hash talbe----#
+@{srv01='10.10.0.201';srv02='10.10.10.202'}
+#--------#
+
+#varialbe utilizting a hash table#
+#includes 4 key value pairs#
+
+
+#--hash table w/variable--#
+$ip = @{
+srv01='10.10.0.201'
+srv02='10.10.0.221'
+srv03='10.10.0.219'
+srv04='10.10.0.212'
+}
+$ip
+#----#
+
+
+#--key--#                  
+$ip.keys 
+#----#
+#this shows the keys for the hash table (srv...)#
+# /4 keys // [srv03] [srv01] [srv02] [srv04]
+
+#--value--# 
+$ip.Values 
+#----# 
+#this shows the values in the key value pair#
+# /4 values // [10.10.0.219] [10.10.0.201] [10.10.0.221] [10.10.0.212]
+
+#--key/value pair type--# 
+$ip.GetType()
+#----# 
+#this gets the type of value for the key pair#
+#the output is extensive for this#
+
+#--call key--#
+$ip.srv02
+#----#
+#this is used to call a key value pair from the hash table#
+
+
+#adding a back tick (sybmbol above tab key) continues a line#
+
+#----hash table w/back to----#
+#@{srv01='10.10.0.201';srv02=`'10.10.10.202'}
+#---line contiuation example w/`#                         
+#$ip = @{
+#srv01='10.10.0.201'
+#srv02='10.10.0.221'
+#srv03='10.10.0.219'
+#srv04='10.10.0.212'
+#}
+#$ip
+#----#
+
+#****test Script****#
+
+#$test = @{
+#name01= 'josh'
+#name02 = 'sean'
+#name03 ='james'
+#}
+#$test
