@@ -1,0 +1,13 @@
+$syncStatus = w32tm /query /status
+$offsetLine = $syncStatus | Select-String -Pattern "Offset"
+$offsetValue = $offsetLine -replace "Offset:\s+", "" -replace "s", ""
+
+# Convert the offset value to seconds
+$offsetInSeconds = [convert]::ToDouble($offsetValue)
+
+# Check if the offset is greater than 300 seconds (5 minutes)
+if ($offsetInSeconds -gt 300) {
+    Write-Host "The computer is out of sync by more than 5 minutes." -ForegroundColor Red
+} else {
+    Write-Host "The computer's time is within the 5-minute tolerance." -ForegroundColor Green
+}
