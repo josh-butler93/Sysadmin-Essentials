@@ -1,6 +1,4 @@
-# Description: This script is designed to automate the SCCM Client Installation Status
-
-# This script checks if the SCCM client is installed on a local or remote machine:
+# Description: This script checks if the SCCM client is installed on a local or remote machine:
 
 $ComputerName = "localhost" # Change to remote computer name as needed
 
