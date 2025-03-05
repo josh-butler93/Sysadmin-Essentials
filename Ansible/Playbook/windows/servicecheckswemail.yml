@@ -1,0 +1,85 @@
+---
+- name: Check Windows services status and send results via email
+  hosts: #####
+  gather_facts: yes #optional
+  vars: 
+    ansible_connection: winrm
+    ansible_port: 5985
+    ansible_winrm_transport: kerberos
+    ansible_winrm_server_cert_validation: ignore
+    log_file: "//path/to/file/share/service_status.log"
+    recipient_email: "recipeint@email.com"
+    sender_email: "email@address.com"
+    smtp_server: "mailrelay_servername"
+    smtp_port: 587
+    smtp_user: "smtp_user"
+    smtp_password: "smtp_password"
+
+  tasks:
+    - name: Check the status of Windows Update service
+      win_service:
+        name: wuauserv
+      register: result_update
+
+    - name: Check the status of BITS service
+      win_service:
+        name: BITS
+      register: result_BITS
+
+    - name: Show the Windows Update service status
+      debug:
+        var: result_update
+
+    - name: Show the BITS service status
+      debug:
+        var: result_BITS
+
+    - name: Check if Windows Update service is running
+      debug:
+        msg: "{{ inventory_hostname }}: Windows Update service is running"
+      when: result_update.state == "running"
+
+    - name: Check if Windows Update service is stopped
+      debug:
+        msg: "{{ inventory_hostname }}: Windows Update Service is stopped"
+      when: result_update.state != "running"
+
+    - name: Check if BITS service is running
+      debug:
+        msg: "{{ inventory_hostname }}: BITS service is running"
+      when: result_BITS.state == "running"
+
+    - name: Check if BITS service is stopped
+      debug:
+        msg: "{{ inventory_hostname }}: BITS service is stopped"
+      when: result_BITS.state != "running"
+
+    # Step 1: Write results to a log file
+    - name: Log Windows Update service status to log file
+      lineinfile:
+        path: "{{ log_file }}"
+        line: "Windows Update service: {{ result_update.state }}"
+        create: yes
+        append: yes
+
+    - name: Log BITS service status to log file
+      lineinfile:
+        path: "{{ log_file }}"
+        line: "BITS service: {{ result_BITS.state }}"
+        create: yes
+        append: yes
+
+    # Step 2: Send an email with the log file
+    - name: Send email with log file as attachment
+      mail:
+        to: "{{ recipient_email }}"
+        subject: "Windows Service Status Report"
+        body: "Please find the attached log file with the service status results."
+        attach:
+          - "{{ log_file }}"
+        smtp_host: "{{ smtp_server }}"
+        smtp_port: "{{ smtp_port }}"
+        smtp_user: "{{ smtp_user }}"
+        smtp_password: "{{ smtp_password }}"
+        from: "{{ sender_email }}"
+        smtp_ssl: yes
