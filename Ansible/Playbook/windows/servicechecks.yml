@@ -1,0 +1,35 @@
+---
+- name: Check Windows services status and store results in a file share
+  hosts: #####
+  gather_facts: yes
+  vars:
+    ansible_connection: winrm
+    ansible_port: 5985
+    ansible_winrm_transport: kerberos
+    ansible_winrm_server_cert_validation: ignore
+    share_path: "\\\\path\\to\\fileshare\\filename.log"  # UNC path for the file share
+
+  tasks:
+    - name: Check the status of Windows Update service
+      win_service:
+        name: wuauserv
+      register: result_update
+
+    - name: Check the status of BITS service
+      win_service:
+        name: BITS
+      register: result_BITS
+
+    - name: Log Windows Update service status to file share
+      win_lineinfile:
+        path: "{{ share_path }}"
+        line: "Windows Update service: {{ result_update.state }} on {{ inventory_hostname }}"
+        create: yes
+        append: yes
+
+    - name: Log BITS service status to file share
+      win_lineinfile:
+        path: "{{ share_path }}"
+        line: "BITS service: {{ result_BITS.state }} on {{ inventory_hostname }}"
+        create: yes
+        append: yes
