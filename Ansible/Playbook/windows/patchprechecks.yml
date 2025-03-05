@@ -1,6 +1,6 @@
 ---
 - name: Check Windows services status
-  hosts: windows
+  hosts: #####
   gather_facts: yes
   vars:
     ansible_connection: winrm
