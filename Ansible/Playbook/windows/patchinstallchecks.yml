@@ -1,6 +1,6 @@
 ---
 - name: windows server patching
-  hosts: all
+  hosts: #####
   tasks:
 
     - name: Check for missing updates
