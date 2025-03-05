@@ -1,0 +1,20 @@
+---
+- name: Check Windows services status
+  hosts: #####
+  gather_facts: yes
+  vars:
+    ansible_connection: winrm
+    ansible_port: 5985
+    ansible_winrm_transport: kerberos
+    ansible_winrm_server_cert_validation: ignore
+  tasks:
+    - name: Reboot the machine
+      win_reboot:
+        reboot_timeout: 600     # Time in seconds to wait for the reboot
+        test_command: whoami    # Command to test if the machine is back online
+      register: reboot_result  # Register the result to check if reboot was successful
+
+    - name: Confirm the machine has rebooted
+      debug:
+        msg: "{{ inventory_hostname }} has successfully rebooted."
+      when: reboot_result.changed  # This will only run if the machine was rebooted
