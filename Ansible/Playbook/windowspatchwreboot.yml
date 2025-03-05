@@ -1,0 +1,40 @@
+---
+- name: Patch Windows Servers
+  hosts: #####
+  gather_facts: yes
+  tasks:
+    - name: Check for available Windows updates
+      win_update_facts:
+
+    - name: Install available updates
+      win_package:
+        name: "{{ item.title }}"
+        path: "{{ item.package_path }}"
+        state: present
+      loop: "{{ ansible_facts.packages | selectattr('title', 'search', '^Security Update').list() }}"
+      when: ansible_facts.packages is defined
+
+    - name: Reboot the server if required
+      win_reboot:
+        reboot_timeout: 600
+        test_command: echo 'Reboot needed'
+      when: ansible_facts['windows_updates']['pending'] is defined and ansible_facts['windows_updates']['pending'] == true
+      ignore_errors: yes
+      register: reboot_status
+
+    - name: Wait for the server to become available after reboot
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        port: 5986
+        state: started
+        timeout: 600
+      when: reboot_status.rebooted is defined and reboot_status.rebooted == true
+
+    - name: Verify if updates are successfully installed
+      win_update_facts:
+      register: update_facts
+      when: reboot_status.rebooted is defined and reboot_status.rebooted == true
+
+    - name: Check the installed updates
+      debug:
+        var: update_facts
