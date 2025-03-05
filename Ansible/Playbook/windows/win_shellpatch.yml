@@ -1,0 +1,19 @@
+---
+- name: Utilizing Windows Update command
+  hosts: #####
+  gather_facts: yes
+  tasks:
+    - name: Run Get-WUInstall command
+      win_shell: |
+        Get-WUInstall -AcceptAll -IgnoreReboot
+      register: update_output
+      ignore_errors: yes # This will allow the playbook to continue even if the commnad fails
+
+    - name: Show Results of Get-WUInstall command
+      debug:
+        var: update_output
+
+    - name: Check for errors
+      fail:
+        msg: "The Get-WUInstall command failed"
+      when: update_output.rc != 0 # Check if the return code is non-zero (indicating failure)
