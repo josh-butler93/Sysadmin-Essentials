@@ -1,0 +1,70 @@
+---
+- name: Check Windows services status
+  hosts: windows
+  gather_facts: yes
+  vars:
+    ansible_connection: winrm
+    ansible_port: 5985
+    ansible_winrm_transport: kerberos
+    ansible_winrm_server_cert_validation: ignore
+
+  tasks:
+    - name: Check the status of Windows Update service
+      win_service:
+        name: wuauserv
+      register: result_update
+
+    - name: Check the status of BITS service
+      win_service:
+        name: BITS
+      register: result_BITS
+
+    - name: Show the Windows Update service status
+      debug:
+        var: result_update
+
+    - name: Show the BITS service status
+      debug:
+        var: result_BITS
+
+    - name: Check if Windows Update service is running
+      debug:
+        msg: "{{ inventory_hostname }}: Windows Update service is running"
+      when: result_update.state == "running"
+
+    - name: Check if Windows Update service is stopped
+      debug:
+        msg: "{{ inventory_hostname }}: Windows Update Service is stopped"
+      when: result_update.state != "running"
+
+    - name: Start Windows Update service
+      win_service:
+        name: wuauserv
+        state: started
+      when: result_update.state != "running" 
+
+    - name: Windows Update service status
+      debug:
+        msg: "{{ inventory_hostname }}: Starting Windows Update service"
+      when: result_update.state != "running" and result_update.state != "running"
+
+    - name: Check if BITS service is running
+      debug:
+        msg: "{{ inventory_hostname }}: BITS service is running"
+      when: result_BITS.state == "running"
+
+    - name: Check if BITS service is stopped
+      debug:
+        msg: "{{ inventory_hostname }}: BITS service is stopped"
+      when: result_BITS.state != "running"
+
+    - name: Start BITS service
+      win_service:
+        name: BITS
+        state: started
+      when: result_BITS.state != "running"
+
+    - name: BITS service status
+      debug:
+        msg: "{{ inventory_hostname }}: Starting BITS service"
+      when: result_BITS.state != "running" result_BITS.state != "running"
