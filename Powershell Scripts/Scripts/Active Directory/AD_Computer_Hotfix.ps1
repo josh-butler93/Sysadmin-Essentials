@@ -1,5 +1,5 @@
-# Import the Active Directory module (if not already loaded)
-# Import-Module ActiveDirectory
+<# Import the Active Directory module (if not already loaded)
+   Import-Module ActiveDirectory #>
 
 # Prompt user for input
 $specificComputerName = Read-Host "Enter the specific computer name or pattern to filter (e.g., PC-123 or *Server*)"
