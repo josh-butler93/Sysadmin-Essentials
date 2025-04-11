@@ -1,0 +1,36 @@
+---
+- name: Install and Configure Nagios Client (NRPE) on Ubuntu
+  hosts: all
+  gather_facts: yes
+  become: yes
+  tasks:
+
+    - name: Update APT package cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install NRPE and Nagios Plugins
+      ansible.builtin.apt:
+        name:
+          - nagios-nrpe-server # NPRE daemon
+          - nagios-plugins # Basic Nagios plugins
+        state: present
+
+    - name: Configure NRPE to allow Nagios server to connect
+      ansible.builtin.lineinfile:
+        path: /etc/nagios/nrpe.cfg
+        regexp: '^allowed_hosts='
+        line: "allowed_hosts=127.0.0.1,{{ 10.0.0.239}}"
+      notify: Restart NRPE
+
+    - name: Ensure NRPE service is enabled and running
+      ansible.builtin.service:
+        name: nagios-nrpe-server
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: Restart NRPE
+      ansible.builtin.service:
+        name: nagios-nrpe-server
+        state: restarted
