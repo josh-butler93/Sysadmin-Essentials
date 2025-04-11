@@ -1,0 +1,13 @@
+---
+- name: Installing Visual Studio Code
+  hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Visual Studio Code Install
+      ansible.builtin.apt: # apt works as well
+        name: <app_name>
+        state: present
+
+# ansible-playbook app_install.yml -i <inventory_file> -k --ask-become-pass
