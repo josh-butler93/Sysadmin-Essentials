@@ -1,0 +1,20 @@
+---
+- name: Update and Upgrade Ubuntu Server
+  hosts: localhost
+  gather_facts: true
+  beccome: true
+  tasks:
+
+    - name: Update apt cache
+      apt:
+        update_cache:
+        cache_valid_time: 3600
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist # Can use 'yes' for a regular upgrade, 'dist' for a full upgrade
+
+    - name: Remove Orphaned Packages
+      apt:
+        auto_remove: 
+        purge:
