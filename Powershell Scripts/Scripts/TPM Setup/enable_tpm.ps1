@@ -2,7 +2,7 @@
 $tpm = Get-Tpm
 if (!$tpm) {
     Write-Warning "TPM is not detected on this machine."
-    exit
+    # exit
 }
 
 # Check if TPM is enabled but not ready
